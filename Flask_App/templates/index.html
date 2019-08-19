@@ -1,0 +1,269 @@
+{% extends "layout.html" %}
+ {% block body %}
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
+
+
+
+<div class="container">
+
+            <div class="jumbotron">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+
+                    <div class="card-body">
+
+                      <h5 class="card-title">Table </h5>
+                        <div class="row">
+                            <div class="col md-12">
+                        <a href="" class="btn btn-success pull-right" data-toggle="modal" data-target="#addModal">Add</a>
+</div>
+</div>
+<hr>
+                        <br>
+{%with messages = get_flashed_messages()%}
+        {%if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible " role="alert">
+
+                    {{ message }}
+                    </div>
+                    {% endfor%}
+                    {%endif%}
+        {%endwith%}
+
+<table class="table table-dark table-hover table-bordered">
+
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+                            <th scope="col">Phone No</th>
+                            <th scope="col">Color</th>
+                            <th class="text-left">Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+{%for dat in data%}
+<tr>
+    <td>{{dat.ID}}</td>
+    <td>{{dat.Name}}</td>
+    <td>{{dat.Phone}}</td>
+    <td>{{dat.Color}}</td>
+    <td class="text-left">
+        <a href="/update/{{dat.ID}}" class="btn btn-primary text-left" data-toggle="modal" data-target="#editModal{{dat.ID}}">Edit</a>
+        <a href="/delete/{{dat.ID}}" class="btn btn-danger text-left" data-toggle="modal" data-target="#deleteModal{{dat.ID}}">Delete</a>
+<!--<td>-->
+<!--<div id="editModal{{dat.ID}}" class ="modal fade" role="dialog"  tabindex="-1" aria-hidden="true">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" >Please Update Data</h5>-->
+<!--&lt;!&ndash;                <button type="button" class="close" data-dismiss="modal">&times;</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                <h4 class="modal-title"></h4>&ndash;&gt;-->
+
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--            </div>-->
+
+
+<!--            <div class="modal-body">-->
+<!--                <form action="{{url_for('update', ids= dat.ID)}}" method="post">-->
+
+<!--                    <div class="form-group">-->
+<!--                        <label>Name:</label>-->
+<!--                        <input type="hidden"  name="id" value="{{dat.ID}}">-->
+<!--                        <input type="text" class="form-control" name="name" value="{{dat.Name}}" required="required">-->
+<!--                    </div>-->
+<!--            <div class="form-group">-->
+<!--                        <label>Phone:</label>-->
+<!--                        <input type="tel" class="form-control" name="phone" value="{{dat.Phone}}" required="required">-->
+<!--                    </div>-->
+
+<!--                <div class="form-group">-->
+<!--                        <label>Color:</label>-->
+<!--                        <input type="text" class="form-control" name="color" value="{{dat.Color}}" required="required">-->
+<!--                    </div>-->
+<!--<div class="form-group">-->
+<!--&lt;!&ndash;                        <button class="btn btn-primary" type="submit">Update</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="button" class="btn btn-danger float-right " data-dismiss="modal">Close</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button type="button" class="btn btn-danger  " data-dismiss="modal">Close</button>&ndash;&gt;-->
+<!--<div  class="center-block text-center">-->
+<!--            <button type="submit" class="btn btn-success">Update</button>-->
+<!--            <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>-->
+<!--        </div>-->
+<!--                    </div>-->
+
+
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--</td>-->
+<!--<td>-->
+<!--    <div class="modal fade" id="deleteModal{{dat.ID}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="deleteModalLabel">Delete values?</h5>-->
+<!--          <div class="form-group">-->
+<!--                        <label>Delete Values?</label>-->
+<!--                        <input type="tel" class="form-control" name="phone"  required="required">-->
+<!--                    </div>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--        <form action="{{url_for('delete',ids=dat.ID)}}" method="POST">-->
+<!--            <input class="btn btn-danger" type="submit" value="Delete">-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</td>-->
+</tr>
+{%endfor%}
+    </tbody>
+</table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+
+
+{%for dat in data%}
+
+    <div class="modal fade" id="deleteModal{{dat.ID}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete values?</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form action="{{url_for('delete',ids=dat.ID)}}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{%endfor%}
+{%for dat in data%}
+
+<div id="editModal{{dat.ID}}" class ="modal fade" role="dialog"  tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Please Update Data</h5>
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h4 class="modal-title"></h4>-->
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+
+
+            <div class="modal-body">
+                <form action="{{url_for('update', ids= dat.ID)}}" method="post">
+
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="hidden"  name="id" value="{{dat.ID}}">
+                        <input type="text" class="form-control" name="name" value="{{dat.Name}}" required="required">
+                    </div>
+            <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="tel" class="form-control" name="phone" value="{{dat.Phone}}" required="required">
+                    </div>
+
+                <div class="form-group">
+                        <label>Color:</label>
+                        <input type="text" class="form-control" name="color" value="{{dat.Color}}" required="required">
+                    </div>
+<div class="form-group">
+<div  class="center-block text-center">
+            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endfor%}
+
+
+<div id="addModal" class ="modal fade" role="dialog"  tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h4 class="modal-title"></h4>-->
+                 <h5 class="modal-title" >Please Insert Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url_for('insert')}}" method="post">
+
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" name="name" required="required">
+                    </div>
+            <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="tel" class="form-control" name="phone" required="required">
+                    </div>
+
+                <div class="form-group">
+                        <label>Color:</label>
+                        <input type="text" class="form-control" name="color" required="required">
+                    </div>
+
+<div class="form-group">
+                        <button class="btn btn-primary" type="submit">Insert</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
